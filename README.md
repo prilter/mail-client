@@ -1,5 +1,6 @@
 # mail-client
 My own cli mail client ;)  
+Only Python code for now x(  
 
 # Installation  
 ```bash  
