@@ -8,13 +8,13 @@ def log(em, p, HOST="smtp.gmail.com", PORT=465):
         smtp.ehlo()
         smtp.login(em, p)
     except Exception as e:
-        print("Something going wrong - no access")
+        print("Something going wrong")
         sys.exit(1)
-    print("Access!")
     return smtp
 
 def send(smtp, user_em, p, req_em, subject, mes, HOST="smtp.gmail.com", PORT=465):
     msg = f"Subject: {subject}\n\n{mes}"
     smtp.sendmail(user_em, req_em, msg, )
+    print("Success!")
 
 def end_work(smtp): smtp.quit()

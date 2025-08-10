@@ -7,7 +7,7 @@ git clone https://github.com/prilter/mail-client
 cd mail-client
 ```  
   
-Add CONFIG.py with password variable  
+Add CONFIG.py with access_password and mail_password variables  
   
 ```bash  
 python main.py

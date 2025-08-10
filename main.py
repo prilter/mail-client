@@ -1,19 +1,38 @@
 # LIBS
+from CONFIG import access_password, mail_password
 from smtp import *
 from smtplib import *
-from CONFIG import password
+from imap import *
+from sys import exit
 
 # LOGIN
 usr_mail = input('User email: ')
-smtp_api = log(usr_mail, password)
+p        = input('Password: ')
+if (p != mail_password):
+    print("Access denied!")
+    exit(1)
+smtp_api = log(usr_mail, access_password)
+print("Access!")
 
-# GET MSG
-req_mail = input('Recipient email: ')
-sub = input('Your subject: ')
-mes = input('Your message: ')
+while (1):
+    # What to do
+    prompt = input('Read/Print/Exit(r/p/e): ')
 
-# SEND 
-send(smtp_api, usr_mail, password, req_mail, sub, mes)
+    # Do
+    if (prompt == 'r'):
+        N = int(input("How many to see: "))
+        read(usr_mail, access_password, N)
+    elif (prompt == 'p'):
+        # GET MSG
+        req_mail = input('Recipient email: ')
+        sub = input('Your subject: ')
+        mes = input('Your message: ')
 
-# END
-end_work(smtp_api)
+        # SEND
+        send(smtp_api, usr_mail, access_password, req_mail, sub, mes)
+    elif (prompt == 'e'):
+        # END
+        end_work(smtp_api)
+        break
+    else:
+        print("Unknown command x(")
